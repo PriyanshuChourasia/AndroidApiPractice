@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">AndroidApiPractice</string>
+    <string name="name_placeholder">Enter name</string>
+    <string name="placeholder_email">user123@gmail.com</string>
+    <string name="placeholder_password">Enter Password</string>
+    <string name="placeholder_confirm_password">Enter Confirm Password</string>
+</resources>
