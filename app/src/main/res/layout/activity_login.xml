@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/login"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".auth.LoginActivity"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:layout_margin="5dp">
+
+<!--    <Toolbar-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content">-->
+<!--        <ImageView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:src="@drawable/arrow_back"-->
+<!--            app:tint="@color/teal_700"-->
+<!--            android:contentDescription="@string/back_arrow"/>-->
+<!--    </Toolbar>-->
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="30dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sign_in"
+            android:textColor="@color/dark"
+            android:textStyle="bold"
+            android:textSize="30sp"/>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/sign_in_qoute"
+        android:gravity="center"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="35dp"
+        android:textColor="@color/gray"
+        android:textSize="12sp"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="10dp"
+        app:boxCornerRadiusTopStart="10dp"
+        app:boxCornerRadiusBottomStart="10dp"
+        app:boxCornerRadiusBottomEnd="10dp"
+        app:boxCornerRadiusTopEnd="10dp"
+        android:gravity="center"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/emailEdit"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:drawableStart="@drawable/email_asset"
+            android:drawablePadding="10dp"
+            android:drawableTint="@color/gray"
+            android:hint="@string/placeholder_email"
+            android:textSize="12sp"
+            android:inputType="textEmailAddress"
+            android:layout_marginBottom="10dp"
+            android:textColorHint="@color/gray"
+            android:layout_marginTop="40dp"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="10dp"
+        android:layout_marginTop="54dp"
+        app:boxCornerRadiusTopStart="10dp"
+        app:boxCornerRadiusBottomStart="10dp"
+        app:boxCornerRadiusBottomEnd="10dp"
+        app:boxCornerRadiusTopEnd="10dp"
+        android:gravity="center"
+        app:passwordToggleEnabled="true"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/passwordEdit"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:drawableStart="@drawable/password_asset"
+            android:drawablePadding="10dp"
+            android:drawableTint="@color/gray"
+            android:hint="@string/placeholder_password"
+            android:textSize="12sp"
+            android:inputType="textPassword"
+            android:textColorHint="@color/gray"
+            android:layout_marginBottom="18dp"
+            android:layout_marginTop="40dp"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/signInbutton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="18dp"
+        android:text="@string/sign_in"
+        android:textAllCaps="false"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textAppearance="?attr/textAppearanceButton"
+        android:paddingVertical="10dp"
+        android:background="@drawable/round_ripple_corner"
+        />
+
+
+<!--    <com.google.android.material.button.MaterialButton-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="59dp"-->
+<!--        android:text="@string/sign_in"-->
+<!--        android:textSize="13sp"-->
+<!--        android:textAllCaps="false"-->
+<!--        android:gravity="center"-->
+<!--        android:layout_margin="20dp"-->
+<!--        android:backgroundTint="@color/dark_brown"-->
+<!--        android:textColor="@color/white"-->
+<!--        android:textAppearance="?attr/textAppearanceButton"-->
+<!--        android:paddingVertical="10dp"/>-->
+
+</LinearLayout>

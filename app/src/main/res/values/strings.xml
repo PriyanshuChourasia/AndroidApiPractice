@@ -1,7 +1,21 @@
 <resources>
     <string name="app_name">AndroidApiPractice</string>
     <string name="name_placeholder">Enter name</string>
-    <string name="placeholder_email">user123@gmail.com</string>
+    <string name="placeholder_email">email@email.com</string>
     <string name="placeholder_password">Enter Password</string>
     <string name="placeholder_confirm_password">Enter Confirm Password</string>
+    <string name="register_button">Register</string>
+
+
+
+    <string name="back_arrow">back arrow</string>
+
+    <string name="sign_in">Sign In</string>
+    <string name="sign_in_qoute">Enter your details to login</string>
+    <string name="account">Account</string>
+
+    <string-array name="login_ui">
+        <item>Create</item>
+        <item>Account</item>
+    </string-array>
 </resources>
