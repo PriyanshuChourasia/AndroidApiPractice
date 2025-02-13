@@ -7,12 +7,12 @@
     <string name="register_button">Register</string>
 
 
-
     <string name="back_arrow">back arrow</string>
 
     <string name="sign_in">Sign In</string>
     <string name="sign_in_qoute">Enter your details to login</string>
     <string name="account">Account</string>
+    <string name="terms_and_condition">Terms and Condition</string>
 
     <string-array name="login_ui">
         <item>Create</item>

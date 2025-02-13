@@ -1,4 +1,3 @@
 package com.priyanshu.androidapipractice.models
 
-class AuthToken {
-}
+data class AuthToken(val accessToken: String, val refreshToken: String)
