@@ -18,4 +18,15 @@
         <item>Create</item>
         <item>Account</item>
     </string-array>
+
+
+    <!--    Track Screen Strings-->
+    <string name="track_screen">Track</string>
+
+    <!--    Bottom navigation string-->
+    <string name="track_nav">Track</string>
+    <string name="history_nav">History</string>
+    <string name="report_nav">Report</string>
+    <string name="notification_nav">Notification</string>
+
 </resources>

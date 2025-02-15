@@ -15,6 +15,9 @@ constraintlayout = "2.2.0"
 gsonVersion="2.12.1"
 retrofitVersion="2.10.0"
 retrofitConvertor="2.10.0"
+lottieVersion="6.3.0"
+navigationFragmentKtx = "2.8.5"
+navigationUiKtx = "2.8.5"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -38,6 +41,9 @@ androidx-constraintlayout = { group = "androidx.constraintlayout", name = "const
 gson = {group="com.google.code.gson", name="gson", version.ref="gsonVersion"}
 retrofit = {group="com.squareup.retrofit2", name="retrofit", version.ref="retrofitVersion"}
 retrofit-converter-gson = {group="com.squareup.retrofit2", name="converter-gson", version.ref="retrofitConvertor"}
+lottie = {group="com.airbnb.android", name="lottie", version.ref="lottieVersion"}
+androidx-navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigationFragmentKtx" }
+androidx-navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigationUiKtx" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

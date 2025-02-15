@@ -15,8 +15,17 @@
         android:theme="@style/Theme.AndroidApiPractice"
         tools:targetApi="31">
         <activity
-            android:name=".app.Track"
-            android:exported="false" />
+            android:name=".app.DashboardActivity"
+            android:exported="false"
+            android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar" />
+        <activity
+            android:name=".app.TrackActivity"
+            android:exported="false"
+            android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar" />
+        <activity
+            android:name=".auth.TermAndConditionActivity"
+            android:exported="false"
+            android:theme="@style/Theme.TermAndCondition" />
         <activity
             android:name=".auth.LoginActivity"
             android:exported="false" />

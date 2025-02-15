@@ -1,3 +1,8 @@
 package com.priyanshu.androidapipractice.models
 
-data class AuthToken(val accessToken: String, val refreshToken: String)
+import com.google.gson.annotations.SerializedName
+
+data class AuthToken(
+   @SerializedName("access_token") val accessToken: String,
+   @SerializedName("refresh_token") val refreshToken: String
+)

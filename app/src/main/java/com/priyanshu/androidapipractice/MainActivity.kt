@@ -1,17 +1,31 @@
 package com.priyanshu.androidapipractice
 
 import android.app.AlertDialog
+import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.LinearLayout
-import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.ComponentActivity
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
+import com.priyanshu.androidapipractice.api.RetrofitInstance
+import com.priyanshu.androidapipractice.app.DashboardActivity
+import com.priyanshu.androidapipractice.auth.TermAndConditionActivity
+import com.priyanshu.androidapipractice.models.AuthToken
+import com.priyanshu.androidapipractice.models.LoginRequest
+import com.priyanshu.androidapipractice.models.LoginResponse
+import com.priyanshu.androidapipractice.ui.fragments.CustomLoaderDialog
+import kotlinx.coroutines.launch
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
-class MainActivity : ComponentActivity(),View.OnClickListener {
+class MainActivity : AppCompatActivity(),View.OnClickListener {
 
     private lateinit var username:EditText
     private lateinit var userPassword:EditText
@@ -33,9 +47,7 @@ class MainActivity : ComponentActivity(),View.OnClickListener {
 
 
 
-    private fun inputCheckEmpty(): Boolean{
-        return username.text.toString().trim{it<=' '}.isNotEmpty() && userPassword.text.toString().trim{it<=' '}.isNotEmpty()
-    }
+
 
 
 
@@ -43,10 +55,11 @@ class MainActivity : ComponentActivity(),View.OnClickListener {
     override fun onClick(view: View) {
         when(view.id){
             R.id.signInbutton -> {
-                showToast("Login")
+                applogin()
+//                showTrackScreen()
             }
             R.id.terms ->{
-                showToast("Terms and Condition")
+                showTermView()
             }
             else ->{
                 println("None of the above selected")
@@ -54,11 +67,69 @@ class MainActivity : ComponentActivity(),View.OnClickListener {
         }
     }
 
+    private fun showTermView(){
+        val intent = Intent(this@MainActivity,TermAndConditionActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun applogin(){
+        if(!inputCheckEmpty()){
+            showToast("Please do not leave fields empty")
+            return
+        }
+
+        val email = username.text.toString().trim{it<=' '}
+        val password = userPassword.text.toString().trim{it<=' '}
+        val request = LoginRequest(email,password)
+
+        RetrofitInstance.getApi().login(request).enqueue(object: Callback<LoginResponse>{
+            override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>){
+                if(response.isSuccessful){
+                    Log.d("API Success","Token ${response.body()?.accessToken}")
+                    Log.d("Api details","${response.errorBody()}")
+                    Log.i("Api Details 2:", response.message())
+
+                    showToast("Login Success")
+                }else{
+                    Log.e("API_Error","Error ${response.code()}, Response Error Body ${response.errorBody()?.string()}")
+                    showToast("Login Failed: ${response.code()}")
+                }
+            }
+
+            override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
+                Log.e("Api Failure","Request Failed: ${t.message}")
+                Log.i("Api Info","Request Failed: ${t.message}")
+                showToast("${t.message}")
+            }
+        })
+
+
+    }
+
+    private fun showTrackScreen(){
+
+
+
+        val loader = CustomLoaderDialog()
+        loader.show(supportFragmentManager,"Loader")
+        Handler(Looper.getMainLooper()).postDelayed({
+            loader.dismiss()
+            val trackIntent = Intent(this@MainActivity,DashboardActivity::class.java)
+            trackIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(trackIntent)
+            finish()
+        },3000)
+
+    }
+
     private fun showToast(message:String){
         val toast = Toast.makeText(this,message,Toast.LENGTH_LONG)
         toast.show()
     }
 
+    private fun inputCheckEmpty(): Boolean{
+        return username.text.toString().trim{it<=' '}.isNotEmpty() && userPassword.text.toString().trim{it<=' '}.isNotEmpty()
+    }
 
     private fun showLoginDialog(message:String){
         val builder = AlertDialog.Builder(this)
