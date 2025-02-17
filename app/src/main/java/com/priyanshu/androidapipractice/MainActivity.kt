@@ -12,15 +12,13 @@ import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.lifecycleScope
 import com.priyanshu.androidapipractice.api.RetrofitInstance
 import com.priyanshu.androidapipractice.app.DashboardActivity
 import com.priyanshu.androidapipractice.auth.TermAndConditionActivity
-import com.priyanshu.androidapipractice.models.AuthToken
 import com.priyanshu.androidapipractice.models.LoginRequest
 import com.priyanshu.androidapipractice.models.LoginResponse
 import com.priyanshu.androidapipractice.ui.fragments.CustomLoaderDialog
-import kotlinx.coroutines.launch
+import com.priyanshu.androidapipractice.util.SessionManager
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -31,6 +29,7 @@ class MainActivity : AppCompatActivity(),View.OnClickListener {
     private lateinit var userPassword:EditText
     private lateinit var loginButton:Button
     private lateinit var termCondition: LinearLayout
+    private lateinit var sessionManager: SessionManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,8 +41,19 @@ class MainActivity : AppCompatActivity(),View.OnClickListener {
         termCondition = findViewById<LinearLayout>(R.id.terms)
         loginButton.setOnClickListener(this)
         termCondition.setOnClickListener(this)
+        sessionManager = SessionManager(this)
+        checkLogin()
     }
 
+    private fun checkLogin(){
+        val isLoggedIn: Boolean= sessionManager.isLoggedIn()
+        if(isLoggedIn){
+            val appintent = Intent(this@MainActivity,DashboardActivity::class.java)
+            appintent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(appintent)
+            finish()
+        }
+    }
 
 
 
@@ -82,10 +92,12 @@ class MainActivity : AppCompatActivity(),View.OnClickListener {
         val password = userPassword.text.toString().trim{it<=' '}
         val request = LoginRequest(email,password)
 
+
         RetrofitInstance.getApi().login(request).enqueue(object: Callback<LoginResponse>{
             override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>){
                 if(response.isSuccessful){
                     Log.d("API Success","Token ${response.body()?.accessToken}")
+                    sessionManager.saveAuthToken(response.body()?.accessToken)
                     Log.d("Api details","${response.errorBody()}")
                     Log.i("Api Details 2:", response.message())
 
