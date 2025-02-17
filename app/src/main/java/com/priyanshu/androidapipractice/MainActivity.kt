@@ -89,6 +89,11 @@ class MainActivity : AppCompatActivity(),View.OnClickListener {
                     Log.d("Api details","${response.errorBody()}")
                     Log.i("Api Details 2:", response.message())
 
+                    val trackIntent = Intent(this@MainActivity,DashboardActivity::class.java)
+                    trackIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    startActivity(trackIntent)
+                    finish()
+
                     showToast("Login Success")
                 }else{
                     Log.e("API_Error","Error ${response.code()}, Response Error Body ${response.errorBody()?.string()}")

@@ -23,7 +23,7 @@ class DashboardActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedL
 
         supportActionBar?.show()
         supportActionBar?.apply {
-            title="Track"
+            title="Primesys"
 //            setDisplayHomeAsUpEnabled(true)
         }
 

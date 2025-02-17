@@ -67,4 +67,6 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.retrofit.converter.gson)
     implementation(libs.lottie)
+    implementation(libs.logging.interceptor)
+    implementation(libs.okhttp3)
 }
